@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "3648dbf5-a817-4303-bf61-9214736823bf",
+		"name": "Advanced workflow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Request 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7e894510-f3b7-477f-b88a-32b7068b41eb",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "httpbin.org/get?request=1",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "request",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "43164821-fd6c-4762-8f88-af60eeeaa1db",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "httpbin.org/get?request=2",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "request",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "96a18d65-6802-43a8-8a2f-443cabb30eb3",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "httpbin.org/get?request=3",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "request",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28c6e22f-8233-412f-b048-0544ef9e9731",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "httpbin.org/get?request=4",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "request",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28c6e22f-8233-412f-b048-0544ef9e9731",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "httpbin.org/get?request=5",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "request",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request 6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28c6e22f-8233-412f-b048-0544ef9e9731",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "httpbin.org/get?request=6",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "request",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d76417aa-0722-4cce-8605-d1b179890a47",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0761df63-3786-4747-9e71-9151cd49a5d9",
+				"type": "text/javascript",
+				"exec": [
+					"postman.setNextRequest(getNextRequest());",
+					"",
+					"function getNextRequest() {",
+					"    let routes;",
+					"    if (Array.isArray(pm.globals.get(\"remainingRoutes\")) === true) {",
+					"        routes = pm.globals.get(\"remainingRoutes\");",
+					"    } else {",
+					"        routes = pm.iterationData.get(\"routes\");",
+					"    }",
+					"    ",
+					"    const nextRequest = routes.shift();",
+					"    pm.globals.set(\"remainingRoutes\", routes);",
+					"    ",
+					"    if (nextRequest === undefined) {",
+					"        pm.globals.clear(\"remainingRoutes\");",
+					"        return null;",
+					"    }",
+					"    ",
+					"    return nextRequest;",
+					"}"
+				]
+			}
+		}
+	]
+}
